@@ -1,9 +1,9 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 
-const RestaurantItem = ({data}) => {
+const RestaurantItem = ({data, onPress}) => {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container} onPress={onPress}>
       <View>
         <Image source={data.background} style={styles.image} />
         <View style={styles.milesView}>
@@ -21,7 +21,7 @@ const RestaurantItem = ({data}) => {
         />
         <Text style={styles.smile}>{data.smile}%</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

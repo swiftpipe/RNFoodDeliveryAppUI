@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -20,6 +20,7 @@ import SearchBar from './src/components/SearchBar';
 import BottomBar from './src/screens/home/BottomBar';
 import ItemType from './src/screens/home/ItemType';
 import RestaurantItem from './src/screens/home/RestaurantItem';
+import ModalOrder from './src/screens/order/ModalOrder';
 
 const types = [
   {
@@ -62,9 +63,12 @@ const listRestaurants = [
 ];
 
 const App = () => {
+  const [isOrder, setIsOrder] = useState(false);
+  const onPressItem = () => setIsOrder(true);
   const renderRestaurant = (item) => {
-    return <RestaurantItem data={item} />;
+    return <RestaurantItem data={item} onPress={onPressItem} />;
   };
+  const onClose = () => setIsOrder(false);
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -100,6 +104,7 @@ const App = () => {
         </ScrollView>
         <BottomBar />
       </SafeAreaView>
+      {isOrder && <ModalOrder onClose={onClose} isShow={isOrder} />}
     </>
   );
 };
